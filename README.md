@@ -1,6 +1,6 @@
 ## Description
 
-API to manage users and tasks, written in [Nest.JS](https://github.com/nestjs/nest) framework, utilizing TypeScript, TypeORM, Passport.JS, JWT, PostgresSQL, and Jest for integration testing.
+API to manage users and tasks, written using the [Nest.JS](https://github.com/nestjs/nest) framework, utilizing TypeScript, TypeORM, Passport.JS, JWT, PostgresSQL, and Jest for integration testing.
 
 ## Why Nest?
 NestJS is a framework built on top of Express, and provides an [an out-of-the-box application architecture which allows developers and teams to create highly testable, scalable, loosely coupled, and easily maintainable applications](https://docs.nestjs.com/). 
