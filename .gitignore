@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+# protected files
+/config/production.yml
+
 # Logs
 logs
 *.log
