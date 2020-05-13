@@ -1,28 +1,26 @@
 import {
   BaseEntity,
-  Entity,
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToMany,
+  Entity,
 } from 'typeorm';
-import { TaskStatus } from './task-status.enum';
-import { User } from '../auth/user.entity';
-import { Comment } from '../comments/comments.entity';
+import { User } from 'src/auth/user.entity';
+import { Task } from 'src/tasks/task.entity';
 
 @Entity()
-export class Task extends BaseEntity {
+export class Comment extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  title: string;
+  @Column('text')
+  commentText: string;
 
   @Column()
-  description: string;
+  createdAt: Date;
 
   @Column()
-  status: TaskStatus;
+  updatedAt: Date;
 
   @ManyToOne(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -35,11 +33,14 @@ export class Task extends BaseEntity {
   @Column()
   userId: number;
 
-  @OneToMany(
+  @ManyToOne(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    type => Comment,
-    comment => comment.task,
-    { eager: true },
+    type => Task,
+    task => task.comment,
+    { eager: false },
   )
-  comment: Comment[];
+  task: Task;
+
+  @Column()
+  taskId: number;
 }
