@@ -6,11 +6,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
 import { User } from 'src/auth/user.entity';
+import { CommentRepository } from 'src/comments/comments.repository';
 
 @Injectable()
 export class TasksService {
   constructor(
     @InjectRepository(TaskRepository) private taskRepository: TaskRepository,
+    @InjectRepository(CommentRepository)
+    private commentRepository: CommentRepository,
   ) {}
 
   async getTasks(filterDto: GetTasksFilterDTO, user: User): Promise<Task[]> {
