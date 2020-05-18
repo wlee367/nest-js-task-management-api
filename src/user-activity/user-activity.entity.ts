@@ -9,8 +9,8 @@ import { User } from 'src/auth/user.entity';
 
 @Entity()
 export class UserActivity extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   description: string;
