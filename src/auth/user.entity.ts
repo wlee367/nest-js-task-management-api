@@ -10,6 +10,7 @@ import {
 import * as bcrypt from 'bcryptjs';
 import { Task } from '../tasks/task.entity';
 import { Comment } from '../comments/comments.entity';
+import { UserActivity } from 'src/user-activity/user-activity.entity';
 
 @Entity()
 @Unique(['username'])
@@ -43,6 +44,13 @@ export class User extends BaseEntity {
     { eager: false },
   )
   comment: Comment;
+
+  @OneToMany(
+    type => UserActivity,
+    activity => activity.user,
+    { eager: false },
+  )
+  activity: UserActivity;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);
