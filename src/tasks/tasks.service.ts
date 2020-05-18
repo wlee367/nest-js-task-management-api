@@ -7,6 +7,8 @@ import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
 import { User } from '../auth/user.entity';
 import { CommentRepository } from '../comments/comments.repository';
+import { UserActivityRepository } from 'src/user-activity/user-activity.repository';
+import { CreateUserActivityDTO } from 'src/user-activity/dto/createUserActivityDTO';
 
 @Injectable()
 export class TasksService {
@@ -14,6 +16,8 @@ export class TasksService {
     @InjectRepository(TaskRepository) private taskRepository: TaskRepository,
     @InjectRepository(CommentRepository)
     private commentRepository: CommentRepository,
+    @InjectRepository(UserActivityRepository)
+    private userActivityRepository: UserActivityRepository,
   ) {}
 
   async getTasks(filterDto: GetTasksFilterDTO, user: User): Promise<Task[]> {
@@ -33,6 +37,10 @@ export class TasksService {
   }
 
   async createTask(createTaskDto: CreateTaskDTO, user: User): Promise<Task> {
+    const createUserActivity = new CreateUserActivityDTO();
+    createUserActivity.user = user;
+    createUserActivity.description = `${user.username} created a new task called: ${createTaskDto.title}`;
+    await this.userActivityRepository.createUserActivity(createUserActivity);
     return this.taskRepository.createTask(createTaskDto, user);
   }
 
@@ -51,6 +59,12 @@ export class TasksService {
     const task = await this.getTaskById(id, user);
     task.status = status;
     await task.save();
+
+    const createUserActivity = new CreateUserActivityDTO();
+    createUserActivity.user = user;
+    createUserActivity.description = `${user.username} moved the ${task.title} to ${task.status}`;
+    await this.userActivityRepository.createUserActivity(createUserActivity);
+
     return task;
   }
 }
