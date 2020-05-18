@@ -15,8 +15,8 @@ import { UserActivity } from 'src/user-activity/user-activity.entity';
 @Entity()
 @Unique(['username'])
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   username: string;

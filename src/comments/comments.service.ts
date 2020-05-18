@@ -16,7 +16,7 @@ export class CommentsService {
     private commentsRepository: CommentRepository,
   ) {}
 
-  async getCommentById(id: number, user: User): Promise<Comment> {
+  async getCommentById(id: string, user: User): Promise<Comment> {
     const found = await this.commentsRepository.findOne({
       where: {
         id,
@@ -38,7 +38,7 @@ export class CommentsService {
     return this.commentsRepository.createComment(createCommentDto, user);
   }
 
-  async deleteComment(id: number, user: User): Promise<void> {
+  async deleteComment(id: string, user: User): Promise<void> {
     const result = await this.commentsRepository.delete({
       id,
       userId: user.id,
@@ -50,7 +50,7 @@ export class CommentsService {
   }
 
   async updateComment(
-    commentId: number,
+    commentId: string,
     commentText: string,
     user: User,
   ): Promise<Comment> {

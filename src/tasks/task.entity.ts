@@ -33,7 +33,7 @@ export class Task extends BaseEntity {
   user: User;
 
   @Column()
-  userId: number;
+  userId: string;
 
   @OneToMany(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

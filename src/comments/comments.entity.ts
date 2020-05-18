@@ -10,8 +10,8 @@ import { Task } from 'src/tasks/task.entity';
 
 @Entity()
 export class Comment extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column('text')
   commentText: string;
@@ -31,7 +31,7 @@ export class Comment extends BaseEntity {
   user: User;
 
   @Column()
-  userId: number;
+  userId: string;
 
   @ManyToOne(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

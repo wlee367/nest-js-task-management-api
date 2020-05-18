@@ -25,7 +25,7 @@ export class CommentsController {
 
   @Get('/:id')
   getCommentById(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @GetUser() user: User,
   ): Promise<Comment> {
     return this.commentsService.getCommentById(id, user);
@@ -41,16 +41,13 @@ export class CommentsController {
   }
 
   @Delete('/:id')
-  deleteTask(
-    @Param('id', ParseIntPipe) id: number,
-    @GetUser() user: User,
-  ): Promise<void> {
+  deleteTask(@Param('id') id: string, @GetUser() user: User): Promise<void> {
     return this.commentsService.deleteComment(id, user);
   }
 
   @Patch('/:id')
   updateComment(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Body('commentText') commentText: string,
     @GetUser() user: User,
   ): Promise<Comment> {
