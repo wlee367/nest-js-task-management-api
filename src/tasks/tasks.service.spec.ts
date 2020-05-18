@@ -4,6 +4,7 @@ import { TaskRepository } from './tasks.repository';
 import { GetTasksFilterDTO } from './dto/get-tasks-filter.dto';
 import { TaskStatus } from './task-status.enum';
 import { NotFoundException } from '@nestjs/common';
+import { CommentRepository } from '../comments/comments.repository';
 
 const mockUser = { id: 12, username: 'Test User' };
 
@@ -23,6 +24,7 @@ describe('TasksService', () => {
       providers: [
         TasksService,
         { provide: TaskRepository, useFactory: mockTaskRepository },
+        CommentRepository,
       ],
     }).compile();
 

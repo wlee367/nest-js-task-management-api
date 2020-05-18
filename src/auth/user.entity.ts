@@ -10,7 +10,7 @@ import {
 import * as bcrypt from 'bcryptjs';
 import { Task } from '../tasks/task.entity';
 import { Comment } from '../comments/comments.entity';
-import { UserActivity } from 'src/user-activity/user-activity.entity';
+import { UserActivity } from '../user-activity/user-activity.entity';
 
 @Entity()
 @Unique(['username'])

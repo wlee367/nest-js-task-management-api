@@ -5,8 +5,8 @@ import {
   ManyToOne,
   Entity,
 } from 'typeorm';
-import { User } from 'src/auth/user.entity';
-import { Task } from 'src/tasks/task.entity';
+import { User } from '../auth/user.entity';
+import { Task } from '../tasks/task.entity';
 
 @Entity()
 export class Comment extends BaseEntity {
