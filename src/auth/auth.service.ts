@@ -21,7 +21,7 @@ export class AuthService {
 
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string, username: string }> {
     const username = await this.userRepository.validateUserPassword(
       authCredentialsDto,
     );
@@ -34,6 +34,7 @@ export class AuthService {
 
     return {
       accessToken,
+      username
     };
   }
 }
