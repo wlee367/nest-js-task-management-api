@@ -26,7 +26,7 @@ export class CommentsService {
   async getCommentById(id: string, user: User): Promise<Comment> {
     const found = await this.commentsRepository.findOne({
       where: {
-        id,
+        taskId: id,
         user: user.id,
       },
     });

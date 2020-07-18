@@ -5,5 +5,5 @@ export class CreateCommentDTO {
   commentText: string;
 
   @IsNotEmpty()
-  taskId: number;
+  taskId: string;
 }
