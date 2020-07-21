@@ -29,6 +29,9 @@ export class TasksService {
       where: { id, userId: user.id },
     });
 
+    console.log(found);
+
+
     if (!found) {
       throw new NotFoundException(`Task with ID ${id} not found`);
     }

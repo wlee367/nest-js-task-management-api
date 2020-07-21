@@ -26,7 +26,7 @@ export class Comment extends BaseEntity {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => User,
     user => user.tasks,
-    { eager: false },
+    { eager: true },
   )
   user: User;
 
