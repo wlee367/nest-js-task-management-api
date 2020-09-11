@@ -1,5 +1,9 @@
 import { IsString, MinLength, MaxLength, Matches } from 'class-validator';
 
+//Passwords will contain at least 1 upper case letter
+// Passwords will contain at least 1 lower case letter
+// Passwords will contain at least 1 number or special character
+
 export class AuthCredentialsDto {
   @IsString()
   @MinLength(4)
